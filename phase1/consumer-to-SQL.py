@@ -6,10 +6,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import Integer, String, Column, Sequence
 
+
 mysqlkey = os.environ('mysql_key')
 Base = declarative_base()
 get_session = sessionmaker()
-
+# cust_bal_seq = Sequence('cust_bal_seq')
 
 
 class Transaction(Base):
@@ -22,6 +23,8 @@ class Transaction(Base):
     date = Column(Integer)
     amt = Column(Integer)
 
+    def getSelf(self):
+        return '['+str(self.id) + self.custid + str(self.type) + str(self.date) + self.date + str(self.amt)+']'
 
 
 
@@ -40,12 +43,9 @@ class XactionConsumer:
         # THE PROBLEM is every time we re-run the Consumer, ALL our customer
         # data gets lost!
         # add a way to connect to your database here.
-        conn = create_engine("mysql+pymysql://root:" + mysqlkey + "@localhost:3306/zipbank")
+        self.engine = create_engine("mysql+pymysql://root:" + mysqlkey + "@localhost:3306/zipbank")
         # df = pd.read_csv(data_storage_path + 'nyc_park_data2.csv', delimiter=',')
         # df.to_sql(name='transaction', con=conn, schema='zipbank', if_exists='replace')
-
-
-
 
 
     def handleMessages(self):
@@ -62,6 +62,7 @@ class XactionConsumer:
                 self.custBalances[message['custid']] -= message['amt']
             print(self.custBalances)
 
+    
 if __name__ == "__main__":
     c = XactionConsumer()
     c.handleMessages()
