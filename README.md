@@ -28,7 +28,7 @@ this lab requires you to have a running kafka/zookeeper pair on your machine.
 
 Kafka will take in transactions from various applications, and your job is to create the consumers needed to save all those transactions into a database.
 
-To help, we've proviced a test producer that creates random messages and send them into Kafka.
+To help, we've provided a test producer that creates random messages and send them into Kafka.
 
 (to do this lab, you will have needed to step through both of these to get kafka and zookeepder running.
     - [Kafka on Mac1](https://yoda.zipcode.rocks/2020/04/20/kafka-on-mac/)
@@ -151,7 +151,7 @@ a couple samples in python Dicts.
 
 ## For M1 Macs
 
-when using `brew`, you need to change the zookeeper and kafka start routines differently.
+when using `brew`, you _might_ need to change the zookeeper and kafka start routines differently.
 
 For `zookeeper`:
 
