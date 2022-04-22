@@ -4,6 +4,22 @@ build simple consumer (python)
 
 Fork this repo, then clone from your new fork. 
 
+to get k
+```bash
+brew install kafka
+brew install kafka-python
+```
+
+__Nota Bene 2022:__ _If you're running on a M1 Mac, take a look at the bottom of the page._
+
+## Running Kafka
+
+There are a couple shell scripts for running `zookeeper` and `kafka`.
+You need to run `zookeeper` first in a terminal by itself.
+Then run `kafka` in a different terminal.
+
+Then run the `Producers` and `consumers` each in their own terminals. (as needed)
+
 ## ZipBank Project
 
 We have decided to use Kafka as our main event handling infrastructure for our new bank, ZipBank.
@@ -131,3 +147,20 @@ a couple samples in python Dicts.
 { custid: 55, createdate: 1587398219, fname: 'Lisa' lname: 'Loopner' }
 { custid: 56, createdate: 1587398301, fname: 'Todd' lname: 'Cushman' }
 ```
+
+
+## For M1 Macs
+
+when using `brew`, you need to change the zookeeper and kafka start routines differently.
+
+For `zookeeper`:
+
+```bash
+/opt/homebrew/opt/kafka/bin/zookeeper-server-start /opt/homebrew/etc/kafka/zookeeper.properties
+```
+
+And for the `kafka` process:
+
+```bash
+ /opt/homebrew/opt/kafka/bin/kafka-server-start /opt/homebrew/etc/kafka/server.properties
+ ```
